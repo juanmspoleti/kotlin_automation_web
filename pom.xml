@@ -29,15 +29,6 @@
         </profile>
 
         <profile>
-            <id>qa</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <base.url></base.url>
-            </properties>
-        </profile>
-        <profile>
             <id>prod</id>
             <properties>
                 <base.url>https://coinmarketcap.com/</base.url>
