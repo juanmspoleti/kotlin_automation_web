@@ -1,4 +1,4 @@
-#Kotlin Automation WEB project
+# Kotlin Automation WEB project
 
 ## Installation
 You need to have:
@@ -34,6 +34,15 @@ By default, the framework runs with Chrome, to run with Firefox add to the mvn c
 * chrome 
 * firefox
 
+## Run with Docker compose
+* Install docker compose (link above)
+* Open a terminal
+* Go to the project root folder
+* Run the command: <b> docker-compose up </b> (maybe you need to add "sudo" in linux) (the first time will take a few minutes to download and start the containers)
+* In the browser go to: <b> http://localhost:4444/grid/console </b> and you will see a container for <b>chrome</b> and another for <b>firefox</b>
+* Run the tests with <b> mvn clean test -Pprod,grid </b> (the profile grid contains the url to the selenium hub that we started)
+* You can stop the containers with <b>ctrl + C</b>
+
 ## Technologies used:
 * [Kotlin](https://kotlinlang.org/)
 * Maven
@@ -65,3 +74,4 @@ By default, the framework runs with Chrome, to run with Firefox add to the mvn c
     * Browser package: Different browser implementations (their capabilities, driver class, etc) and BrowserType enum with the different types of browser
     * PropertyManager: loads the properties (located in config.properties) and use them in the lifecycle
     * Report package: implementation of the status report with a manager, and a service
+* <i>docker-compose.yml</i> = this file contains the configuration to start the containers of <b>chrome and firefox</b> to be able to run with <b>Selenium Grid</b> and simulate a CI/CD environment
