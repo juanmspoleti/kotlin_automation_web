@@ -4,7 +4,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests
 import com.example.core.report.ReportService
 import org.testng.annotations.AfterClass
 
-class BrubankRunner : AbstractTestNGCucumberTests() {
+class TestngRunner : AbstractTestNGCucumberTests() {
 
     @AfterClass
     fun finish() {
