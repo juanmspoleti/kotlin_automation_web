@@ -11,7 +11,7 @@ class HomePage : BasePage() {
     @FindBy(css = "div[class='q0coyt-1 fOZYHf']")
     private var searchDiv: WebElement? = null
 
-    @FindBy(css = "#tippy-49  input[type='text']")
+    @FindBy(css = "div[class='tippy-content'] input[type='text']")
     private var searchInput: WebElement? = null
 
     private val searchResultsLocator: By = By.cssSelector("div[role='tooltip'] a[class='cmc-link']")
