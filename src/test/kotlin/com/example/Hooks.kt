@@ -15,6 +15,7 @@ class Hooks {
     fun beforeScenario(scenario: Scenario) {
         Logger.getLogger(javaClass).info(">>>Running scenario: ${scenario.name}")
         DriverService.getInstance().get(PropertyManager.getProperty("base.url"))
+        Thread.sleep(1000)
     }
 
     @After

@@ -6,17 +6,19 @@ import org.openqa.selenium.support.FindBy
 
 class CurrencyPage : BasePage() {
 
-    @FindBy(css = "#__next img + h2")
+    @FindBy(css = "span[data-role='coin-name']")
     private var cryptocurrencyName: WebElement? = null
 
-    @FindBy(css = "#__next img + h2 > small")
+    @FindBy(css = "span[data-role='coin-symbol']")
     private var cryptocurrencySymbol: WebElement? = null
 
     fun getName(): String? {
+        waitVisible(cryptocurrencyName)
         return getText(cryptocurrencyName)?.split("\n")?.first()
     }
 
     fun getSymbol(): String? {
+        waitVisible(cryptocurrencySymbol)
         return getText(cryptocurrencySymbol)
     }
 

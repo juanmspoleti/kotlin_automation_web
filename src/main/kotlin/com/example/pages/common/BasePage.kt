@@ -6,7 +6,9 @@ import com.example.core.PropertyManager
 import org.openqa.selenium.*
 import org.openqa.selenium.support.PageFactory
 import org.openqa.selenium.support.ui.ExpectedConditions
+import org.openqa.selenium.support.ui.FluentWait
 import org.openqa.selenium.support.ui.WebDriverWait
+import java.time.Duration
 
 abstract class BasePage {
     init {
@@ -19,15 +21,24 @@ abstract class BasePage {
     }
 
     private fun waitClickable(element: WebElement?) {
-        getWait().until(ExpectedConditions.elementToBeClickable(element))
+        getWait().until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)))
     }
 
     fun waitVisible(element: WebElement?) {
-        getWait().until(ExpectedConditions.visibilityOf(element))
+        try {
+            getWait().until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)))
+        } catch (e: StaleElementReferenceException) {
+            Logger.getLogger(javaClass).warn("StaleElementReferenceException caught, maybe the element is not visible.")
+            Thread.sleep(500)
+        }
     }
 
     fun waitInvisible(element: WebElement?) {
         getWait().until(ExpectedConditions.invisibilityOf(element))
+    }
+
+    fun waitToHaveRecords(records: List<WebElement>?, timeout: Long? = null) {
+        getWait(timeout).until { records?.isNotEmpty() }
     }
 
     fun isVisible(element: WebElement?): Boolean {
@@ -43,7 +54,7 @@ abstract class BasePage {
     }
 
     fun findElementByText(parentElement: WebElement? = null, text: String): WebElement? {
-        return parentElement?.let { it.findElement(byText(text)) }
+        return parentElement?.findElement(byText(text))
             ?: kotlin.run { getDriver().findElement(byText(text)) }
     }
 
